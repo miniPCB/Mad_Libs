@@ -269,17 +269,18 @@ def discover_partner(my_ip, port):
                 msg = json.loads(raw_msg)
                 msg_type = msg.get("type")
                 remote_id = msg.get("id")
-                remote_ip = msg.get("ip") or addr[0]
+                # Trust the UDP sender address over self-reported payload IP.
+                remote_ip = addr[0]
             except json.JSONDecodeError:
                 # Backward compatibility with older peers:
                 # HELLO:<ip> and CONFIRM:<ip>
                 if raw_msg.startswith("HELLO:"):
                     msg_type = "HELLO_LEGACY"
-                    remote_ip = raw_msg.split(":", 1)[1] or addr[0]
+                    remote_ip = addr[0]
                     remote_id = f"legacy:{remote_ip}"
                 elif raw_msg.startswith("CONFIRM:"):
                     msg_type = "ACK_LEGACY"
-                    remote_ip = raw_msg.split(":", 1)[1] or addr[0]
+                    remote_ip = addr[0]
                     remote_id = f"legacy:{remote_ip}"
                 else:
                     continue
@@ -298,6 +299,8 @@ def discover_partner(my_ip, port):
                     sock.sendto(ack_packet, (partner_ip, port))
                 else:
                     sock.sendto(f"CONFIRM:{my_ip}".encode(), (partner_ip, port))
+                # Consider HELLO sufficient to pair; ACK is still sent for symmetry.
+                got_ack = True
                 print(f"\n[DISCOVERY] Partner detected: {partner_ip}")
             elif msg_type == "ACK" and msg.get("to") == my_id:
                 partner_ip = remote_ip
