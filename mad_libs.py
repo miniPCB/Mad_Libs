@@ -225,50 +225,108 @@ def keyboard_listener():
 
 # ========== Forever Discovery ==========
 def discover_partner(my_ip, port):
-    print("🔍 Discovering partner (press 'q' to cancel)...")
+    print("[DISCOVERY] Looking for partner (press 'q' to cancel)...")
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     sock.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
-    sock.bind((my_ip, port))
-    sock.settimeout(1)
-
+    sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+    try:
+        sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEPORT, 1)
+    except (AttributeError, OSError):
+        pass
+    # Bind on all interfaces for better LAN discovery reliability.
+    sock.bind(("", port))
+    sock.settimeout(0.5)
     threading.Thread(target=keyboard_listener, daemon=True).start()
-
     start_time = time.time()
+    my_id = f"{random.getrandbits(64):016x}"
+    partner_ip = None
+    partner_id = None
+    got_ack = False
+    last_hello = 0.0
+    hello_interval = 0.6
+    try:
+        while not stop_waiting:
+            seconds = int(time.time() - start_time)
+            print(f"\r[DISCOVERY] Searching... {seconds}s", end="", flush=True)
+            now = time.time()
+            if now - last_hello >= hello_interval:
+                hello_packet = json.dumps({"type": "HELLO", "ip": my_ip, "id": my_id}).encode()
+                sock.sendto(hello_packet, ("255.255.255.255", port))
+                if partner_ip:
+                    # Also unicast to the detected partner in case broadcast is filtered.
+                    sock.sendto(hello_packet, (partner_ip, port))
+                last_hello = now
+            try:
+                data, addr = sock.recvfrom(1024)
+            except socket.timeout:
+                continue
+            raw_msg = data.decode(errors="ignore").strip()
+            msg_type = None
+            remote_id = None
+            remote_ip = addr[0]
 
-    while not stop_waiting:
-        seconds = int(time.time() - start_time)
-        print(f"\r⏳ Searching for partner... {seconds}s", end="", flush=True)
-
-        try:
-            # Broadcast HELLO
-            message = f"HELLO:{my_ip}"
-            sock.sendto(message.encode(), ("255.255.255.255", port))
-
-            # Check if anyone replies
-            data, addr = sock.recvfrom(1024)
-            msg = data.decode()
-            if msg.startswith("HELLO:"):
-                partner_ip = msg.split(":")[1]
-                if partner_ip != my_ip:
-                    print(f"\n👋 Partner detected: {partner_ip}")
+            try:
+                msg = json.loads(raw_msg)
+                msg_type = msg.get("type")
+                remote_id = msg.get("id")
+                remote_ip = msg.get("ip") or addr[0]
+            except json.JSONDecodeError:
+                # Backward compatibility with older peers:
+                # HELLO:<ip> and CONFIRM:<ip>
+                if raw_msg.startswith("HELLO:"):
+                    msg_type = "HELLO_LEGACY"
+                    remote_ip = raw_msg.split(":", 1)[1] or addr[0]
+                    remote_id = f"legacy:{remote_ip}"
+                elif raw_msg.startswith("CONFIRM:"):
+                    msg_type = "ACK_LEGACY"
+                    remote_ip = raw_msg.split(":", 1)[1] or addr[0]
+                    remote_id = f"legacy:{remote_ip}"
+                else:
+                    continue
+            if not remote_id or remote_id == my_id:
+                continue
+            if msg_type in ("HELLO", "HELLO_LEGACY"):
+                partner_ip = remote_ip
+                partner_id = remote_id
+                if msg_type == "HELLO":
+                    ack_packet = json.dumps({
+                        "type": "ACK",
+                        "ip": my_ip,
+                        "id": my_id,
+                        "to": remote_id
+                    }).encode()
+                    sock.sendto(ack_packet, (partner_ip, port))
+                else:
                     sock.sendto(f"CONFIRM:{my_ip}".encode(), (partner_ip, port))
-                    return partner_ip, "generator"
-            elif msg.startswith("CONFIRM:"):
-                partner_ip = msg.split(":")[1]
-                print(f"\n✅ Partner confirmed: {partner_ip}")
-                return partner_ip, "teller"
-
-        except socket.timeout:
-            continue
-
-    sock.close()
+                print(f"\n[DISCOVERY] Partner detected: {partner_ip}")
+            elif msg_type == "ACK" and msg.get("to") == my_id:
+                partner_ip = remote_ip
+                partner_id = remote_id
+                got_ack = True
+                print(f"\n[DISCOVERY] Partner confirmed: {partner_ip}")
+            elif msg_type == "ACK_LEGACY":
+                partner_ip = remote_ip
+                partner_id = remote_id
+                got_ack = True
+                print(f"\n[DISCOVERY] Legacy partner confirmed: {partner_ip}")
+            if partner_ip and partner_id and got_ack:
+                # Deterministic role selection avoids both peers taking the same role.
+                role = "teller" if my_id < partner_id else "generator"
+                return partner_ip, role
+    finally:
+        sock.close()
     sys.exit(1)
 
 # ========== Game Loop ==========
 def mad_libs_duel(my_ip, partner_ip, port, initial_role):
     role = initial_role
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    sock.bind((my_ip, port))
+    sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+    try:
+        sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEPORT, 1)
+    except (AttributeError, OSError):
+        pass
+    sock.bind(("", port))
     print(f"\n🎮 Starting game as {role.upper()} on {my_ip}:{port} ↔ {partner_ip}:{port}")
 
     word_bank = load_json(WORDS_FILE, DEFAULT_WORD_BANK.copy())
