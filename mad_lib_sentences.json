@@ -34347,5 +34347,243 @@
     "timestamp": "2025-04-05T19:54:14.197479",
     "source_template": "After the {place} collapsed, the {noun} went completely {adjective}.",
     "template_id": 23
+  },
+  {
+    "story": "I always gulp when I see a moist flower.",
+    "from_ip": "10.2.0.2",
+    "timestamp": "2026-02-21T10:10:59.194537",
+    "source_template": "I always {verb} when I see a {adjective} {noun}.",
+    "template_id": 24
+  },
+  {
+    "story": "After the storm, we found a fish noding fast in the mine.",
+    "from_ip": "192.168.0.11",
+    "timestamp": "2026-02-21T10:11:01.255313",
+    "source_template": "After the storm, we found a {noun} {verb}ing {adverb} in the {place}.",
+    "template_id": 54
+  },
+  {
+    "story": "You should never doodle a owl when it's gentle.",
+    "from_ip": "10.2.0.2",
+    "timestamp": "2026-02-21T10:11:03.297432",
+    "source_template": "You should never {verb} a {noun} when it's {adjective}.",
+    "template_id": 12
+  },
+  {
+    "story": "Never trust a jealous barrel to skip calmly.",
+    "from_ip": "192.168.0.11",
+    "timestamp": "2026-02-21T10:11:05.341041",
+    "source_template": "Never trust a {adjective} {noun} to {verb} {adverb}.",
+    "template_id": 33
+  },
+  {
+    "story": "In the sandbox, a harsh ostrich loves to glide politely.",
+    "from_ip": "10.2.0.2",
+    "timestamp": "2026-02-21T10:11:07.398897",
+    "source_template": "In the {place}, a {adjective} {noun} loves to {verb} {adverb}.",
+    "template_id": 11
+  },
+  {
+    "story": "The damp jungle decided to fall carelessly in the pirate.",
+    "from_ip": "192.168.0.11",
+    "timestamp": "2026-02-21T10:11:09.462920",
+    "source_template": "The {adjective} {noun} decided to {verb} {adverb} in the {place}.",
+    "template_id": 0
+  },
+  {
+    "story": "I always lick when I see a ancient lamp.",
+    "from_ip": "10.2.0.2",
+    "timestamp": "2026-02-21T10:11:11.533497",
+    "source_template": "I always {verb} when I see a {adjective} {noun}.",
+    "template_id": 24
+  },
+  {
+    "story": "The boot vanished into the barn without a magical sound.",
+    "from_ip": "192.168.0.11",
+    "timestamp": "2026-02-21T10:11:13.593493",
+    "source_template": "The {noun} vanished into the {place} without a {adjective} sound.",
+    "template_id": 29
+  },
+  {
+    "story": "Nothing is more delightful than a fence trying to blink.",
+    "from_ip": "10.2.0.2",
+    "timestamp": "2026-02-21T10:11:15.654448",
+    "source_template": "Nothing is more {adjective} than a {noun} trying to {verb}.",
+    "template_id": 6
+  },
+  {
+    "story": "The desert was too lazy to drive properly at the ocean.",
+    "from_ip": "192.168.0.11",
+    "timestamp": "2026-02-21T10:11:17.704457",
+    "source_template": "The {noun} was too {adjective} to {verb} properly at the {place}.",
+    "template_id": 55
+  },
+  {
+    "story": "Why is that dog always sailing dangerously in my swimming pool?",
+    "from_ip": "10.2.0.2",
+    "timestamp": "2026-02-21T10:11:19.747339",
+    "source_template": "Why is that {noun} always {verb}ing {adverb} in my {place}?",
+    "template_id": 43
+  },
+  {
+    "story": "I saw a confused kangaroo slideing ferociously today.",
+    "from_ip": "192.168.0.11",
+    "timestamp": "2026-02-21T10:11:21.817658",
+    "source_template": "I saw a {adjective} {noun} {verb}ing {adverb} today.",
+    "template_id": 28
+  },
+  {
+    "story": "The bumpy ocean lives under the amusement park and grabs nightly.",
+    "from_ip": "10.2.0.2",
+    "timestamp": "2026-02-21T10:11:23.884662",
+    "source_template": "The {adjective} {noun} lives under the {place} and {verb}s nightly.",
+    "template_id": 50
+  },
+  {
+    "story": "The chef was too light to chase properly at the garden.",
+    "from_ip": "192.168.0.11",
+    "timestamp": "2026-02-21T10:11:25.944687",
+    "source_template": "The {noun} was too {adjective} to {verb} properly at the {place}.",
+    "template_id": 55
+  },
+  {
+    "story": "I saw a happy iceberg carrying interestingly today.",
+    "from_ip": "10.2.0.2",
+    "timestamp": "2026-02-21T10:11:27.988609",
+    "source_template": "I saw a {adjective} {noun} {verb}ing {adverb} today.",
+    "template_id": 28
+  },
+  {
+    "story": "The muffin vanished into the skyscraper without a hilarious sound.",
+    "from_ip": "192.168.0.11",
+    "timestamp": "2026-02-21T10:11:30.037603",
+    "source_template": "The {noun} vanished into the {place} without a {adjective} sound.",
+    "template_id": 29
+  },
+  {
+    "story": "A dragon in the factory is worth two in the playground.",
+    "from_ip": "10.2.0.2",
+    "timestamp": "2026-02-21T10:11:32.302708",
+    "source_template": "A {noun} in the {place} is worth two in the {place}.",
+    "template_id": 40
+  },
+  {
+    "story": "The island came from the balcony and started laughing recklessly.",
+    "from_ip": "192.168.0.11",
+    "timestamp": "2026-02-21T10:11:34.569662",
+    "source_template": "The {noun} came from the {place} and started {verb}ing {adverb}.",
+    "template_id": 48
+  },
+  {
+    "story": "When I pack, the dog always gets huge.",
+    "from_ip": "10.2.0.2",
+    "timestamp": "2026-02-21T10:11:36.841557",
+    "source_template": "When I {verb}, the {noun} always gets {adjective}.",
+    "template_id": 18
+  },
+  {
+    "story": "Nothing beats a notebook that knows how to hop promptly.",
+    "from_ip": "192.168.0.11",
+    "timestamp": "2026-02-21T10:11:38.908403",
+    "source_template": "Nothing beats a {noun} that knows how to {verb} {adverb}.",
+    "template_id": 47
+  },
+  {
+    "story": "Don't forget to slide your elegant cupcake before bed.",
+    "from_ip": "10.2.0.2",
+    "timestamp": "2026-02-21T10:11:40.984210",
+    "source_template": "Don't forget to {verb} your {adjective} {noun} before bed.",
+    "template_id": 49
+  },
+  {
+    "story": "The flashlight was so jolly it could barely carry.",
+    "from_ip": "192.168.0.11",
+    "timestamp": "2026-02-21T10:11:43.059848",
+    "source_template": "The {noun} was so {adjective} it could barely {verb}.",
+    "template_id": 3
+  },
+  {
+    "story": "At the edge of the gas station, the lazy boot began to pull.",
+    "from_ip": "10.2.0.2",
+    "timestamp": "2026-02-21T10:11:45.123581",
+    "source_template": "At the edge of the {place}, the {adjective} {noun} began to {verb}.",
+    "template_id": 58
+  },
+  {
+    "story": "Why is that marble always shakeing madly in my bakery?",
+    "from_ip": "192.168.0.11",
+    "timestamp": "2026-02-21T10:11:47.387684",
+    "source_template": "Why is that {noun} always {verb}ing {adverb} in my {place}?",
+    "template_id": 43
+  },
+  {
+    "story": "On the cave, a icy lion suddenly itched merrily.",
+    "from_ip": "10.2.0.2",
+    "timestamp": "2026-02-21T10:11:49.664067",
+    "source_template": "On the {place}, a {adjective} {noun} suddenly {verb}ed {adverb}.",
+    "template_id": 20
+  },
+  {
+    "story": "At the diner, I met a bright fridge who could laugh eagerly.",
+    "from_ip": "192.168.0.11",
+    "timestamp": "2026-02-21T10:11:51.944750",
+    "source_template": "At the {place}, I met a {adjective} {noun} who could {verb} {adverb}.",
+    "template_id": 7
+  },
+  {
+    "story": "Some say a fuzzy door can collapse forever.",
+    "from_ip": "10.2.0.2",
+    "timestamp": "2026-02-21T10:11:54.055077",
+    "source_template": "Some say a {adjective} {noun} can {verb} forever.",
+    "template_id": 26
+  },
+  {
+    "story": "The lumpy hotel made my goat pet uncontrollably.",
+    "from_ip": "192.168.0.11",
+    "timestamp": "2026-02-21T10:11:56.126444",
+    "source_template": "The {adjective} {place} made my {noun} {verb} uncontrollably.",
+    "template_id": 44
+  },
+  {
+    "story": "A ladder in the farm is worth two in the elevator.",
+    "from_ip": "10.2.0.2",
+    "timestamp": "2026-02-21T10:11:58.189861",
+    "source_template": "A {noun} in the {place} is worth two in the {place}.",
+    "template_id": 40
+  },
+  {
+    "story": "My gas station was invaded by a adorable ostrich that boiled dizzily.",
+    "from_ip": "192.168.0.11",
+    "timestamp": "2026-02-21T10:12:00.238529",
+    "source_template": "My {place} was invaded by a {adjective} {noun} that {verb}ed {adverb}.",
+    "template_id": 51
+  },
+  {
+    "story": "The kitchen kissed and exploreed again in the cottage.",
+    "from_ip": "10.2.0.2",
+    "timestamp": "2026-02-21T10:12:02.291033",
+    "source_template": "The {noun} {verb}ed and {verb}ed again in the {place}.",
+    "template_id": 38
+  },
+  {
+    "story": "We found a guitar spining happily behind the tower.",
+    "from_ip": "192.168.0.11",
+    "timestamp": "2026-02-21T10:12:04.354294",
+    "source_template": "We found a {noun} {verb}ing {adverb} behind the {place}.",
+    "template_id": 15
+  },
+  {
+    "story": "No barrel can paint evenly like a curly one!",
+    "from_ip": "10.2.0.2",
+    "timestamp": "2026-02-21T10:12:06.427302",
+    "source_template": "No {noun} can {verb} {adverb} like a {adjective} one!",
+    "template_id": 60
+  },
+  {
+    "story": "That calm oven just can't stop bakeing.",
+    "from_ip": "192.168.0.11",
+    "timestamp": "2026-02-21T10:12:08.498284",
+    "source_template": "That {adjective} {noun} just can't stop {verb}ing.",
+    "template_id": 22
   }
 ]
